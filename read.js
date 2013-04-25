@@ -1,6 +1,6 @@
 jQuery.fn.read = function(options) {
     
-    var $this        = $(this),
+    var $this        = $(this).eq(0), //for now, assume we only have one article
         $window      = $(window),
         windowHeight = $window.height()
         loadedAt     = new Date(),
@@ -9,8 +9,8 @@ jQuery.fn.read = function(options) {
                        }, options);
 
         article  = {
-            bottom: $this.eq(0).offset()['top'] + $this.eq(0).innerHeight(),
-            wordCount: $this.eq(0).html().split(" ").length
+            bottom: $this.offset()['top'] + $this.innerHeight(),
+            wordCount: $this.html().split(" ").length
         },
             
         readListener = function() {
