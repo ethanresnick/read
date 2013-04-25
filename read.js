@@ -21,14 +21,14 @@ jQuery.fn.read = function(options) {
             if(read) {
                 $this.trigger('read', [article]);
                 $window.off("scroll.read", readListener);
-				$window.off("resize.read", resizeListener);
+		$window.off("resize.read", resizeListener);
             }
         };
 		
-		resizeListener = function() {
-			windowHeight = $window.height();
-			article.bottom = $this.offset()['top'] + $this.innerHeight();
-		}
+        resizeListener = function() {
+            windowHeight = $window.height();
+            article.bottom = $this.offset()['top'] + $this.innerHeight();
+    	}
     
     $window.on('scroll.read', readListener);
     $window.on('resize.read', resizeListener);
