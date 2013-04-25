@@ -2,7 +2,7 @@ jQuery.fn.read = function(options) {
     
     var $this        = $(this).eq(0), //for now, assume we only have one article
         $window      = $(window),
-        windowHeight = $window.height()
+        windowHeight = $window.height(),
         loadedAt     = new Date(),
         options      = $.extend({
                         'wordsPerSecond': 25      
