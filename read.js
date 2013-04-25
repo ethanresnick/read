@@ -6,7 +6,7 @@ jQuery.fn.read = function(options) {
         loadedAt     = new Date(),
         options      = $.extend({
                         'wordsPerSecond': 25      
-                       }, options);
+                       }, options),
 
         article  = {
             bottom: $this.offset()['top'] + $this.innerHeight(),
@@ -23,12 +23,12 @@ jQuery.fn.read = function(options) {
                 $window.off("scroll.read", readListener);
 		$window.off("resize.read", resizeListener);
             }
-        };
+        },
 		
         resizeListener = function() {
             windowHeight = $window.height();
             article.bottom = $this.offset()['top'] + $this.innerHeight();
-    	}
+    	};
     
     $window.on('scroll.read', readListener);
     $window.on('resize.read', resizeListener);
