@@ -15,7 +15,7 @@ jQuery.fn.read = function(options) {
             
         readListener = function() {
             var scrollTop = $window.scrollTop(),
-                time = new Date() - loadedAt,
+                time = (new Date() - loadedAt)/1000,
                 read = (scrollTop + windowHeight >= article.bottom && time >= article.wordCount/options.wordsPerSecond);
 
             if(read) {
