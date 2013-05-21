@@ -1,3 +1,25 @@
+/* @todo
+ * This code needs a much more robust strategy than what's happening now in order to get real accuracy.
+ * My basic idea is that, rather than listening for scrolling and checking for specific positions, we should
+ * instead try to build a "scroll path history", which we can then analyze for patterns at key moments
+ * (e.g. right before the bottom of the article comes on screen and on beforeunload) to determine whether
+ * and to what degree the story was read, which we can then use to trigger events on the fly or to save as
+ * analytics. 
+ *
+ * The scroll history I'm talking about would probably be a simple sequence of scrolling deltas (which would
+ * capture direction; negative deltas for scrolling up and positive for scrolling down) recorded at consistent,
+ * frequent intervals (e.g. 50ms), which would capture time. The sequence would only start once the user is
+ * scrolling within the article body (i.e. it's somewhat onscreen) for the first time. Then, if they go outside
+ * of the article body at any point, the sequence at that timespot would hold, maybe, -[Huge #] if they went out
+ * of it going up and +[Huge #] if they went out of it going down. [Huge #] might be document height. Trying to
+ * find something that numerically captures the significance of that they've stopped reading, while allowing the
+ * possibility that they may be going out temporarily (e.g on a scroll overshoot) and will come back. [maybe just
+ * check if they do].
+ *
+ * Then the patterns we'd look for would be things like a sudden change in scroll speed from slow to fast
+ * going down (user was reading but skipped to the bottom) or a bunch of slow, alternating up and down
+ * scrolls (user reading carefully), etc.
+ */
 (function($) {
     $.fn.read = function(options) {
 
